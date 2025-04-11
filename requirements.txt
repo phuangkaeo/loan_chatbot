@@ -3,3 +3,4 @@ streamlit
 xgboost==3.0.0
 transformers
 openai==1.72.0
+joblib
