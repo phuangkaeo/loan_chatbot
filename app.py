@@ -4,14 +4,22 @@ import joblib
 import numpy as np
 import time
 
-# --- Configuration and Setup ---
+import requests
+from io import BytesIO
 
+
+# model = joblib.load(BytesIO(response.content))
+# --- Configuration and Setup ---
+# pphuangkaeo/loan_rf_model/blob/main/fine_tuned_rf_model.pkl
 st.set_page_config(page_title="Loan Pal Chatbot", layout="centered", initial_sidebar_state="collapsed")
 
 # Load trained machine learning model
 try:
-    model = joblib.load('fine_tuned_rf_model.pkl')
+    url = "https://huggingface.co/pphuangkaeo/loan_rf_model/resolve/main/fine_tuned_rf_model.pkl"
+    response = requests.get(url)
+    model = joblib.load(BytesIO(response.content))
     model_features = list(model.feature_names_in_)
+
 except FileNotFoundError:
     st.error("Oh snap! 😥 I can't find my prediction brain ('fine_tuned_rf_model.pkl'). Please make sure it's here.")
     st.stop()
