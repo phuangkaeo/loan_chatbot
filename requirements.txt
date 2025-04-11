@@ -1,6 +1,5 @@
-flask
 streamlit
-xgboost==3.0.0
-transformers
-openai==1.72.0
+scikit-learn
 joblib
+requests
+pandas
